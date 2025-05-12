@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": ".col-sm-9>h2>b"
+}

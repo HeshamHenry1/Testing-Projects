@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "form[action=\"/login\"]>input[name=\"password\"]"
+}

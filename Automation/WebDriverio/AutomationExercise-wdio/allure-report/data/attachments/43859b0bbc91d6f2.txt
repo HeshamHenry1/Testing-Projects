@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": ".brands-name>ul>li>a[href=\"/brand_products/H&M\"\"]"
+}

@@ -1,0 +1,4 @@
+{
+  "script": "return (() => window.scrollY).apply(null, arguments)",
+  "args": []
+}

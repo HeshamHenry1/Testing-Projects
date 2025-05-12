@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": ".text-center>a[href=\"/view_cart\"]"
+}

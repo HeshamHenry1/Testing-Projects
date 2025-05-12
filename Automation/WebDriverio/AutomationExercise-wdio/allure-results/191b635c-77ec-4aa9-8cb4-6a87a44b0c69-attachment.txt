@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": ".shop-menu>ul>li>a[href=\"/delete_account\"]"
+}

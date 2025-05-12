@@ -1,0 +1,5 @@
+{
+  "error": "no such element",
+  "message": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".signup-form>h2\"}\n  (Session info: chrome=121.0.6167.86)",
+  "stacktrace": "\tGetHandleVerifier [0x00007FF6CAF05E42+3538674]\n\t(No symbol) [0x00007FF6CAB24C02]\n\t(No symbol) [0x00007FF6CA9D5AEB]\n\t(No symbol) [0x00007FF6CAA1BF4E]\n\t(No symbol) [0x00007FF6CAA1C0CC]\n\t(No symbol) [0x00007FF6CAA5E477]\n\t(No symbol) [0x00007FF6CAA3F0EF]\n\t(No symbol) [0x00007FF6CAA5BDE3]\n\t(No symbol) [0x00007FF6CAA3EE53]\n\t(No symbol) [0x00007FF6CAA0F514]\n\t(No symbol) [0x00007FF6CAA10631]\n\tGetHandleVerifier [0x00007FF6CAF36CAD+3738973]\n\tGetHandleVerifier [0x00007FF6CAF8C506+4089270]\n\tGetHandleVerifier [0x00007FF6CAF84823+4057299]\n\tGetHandleVerifier [0x00007FF6CAC55C49+720121]\n\t(No symbol) [0x00007FF6CAB3126F]\n\t(No symbol) [0x00007FF6CAB2C304]\n\t(No symbol) [0x00007FF6CAB2C432]\n\t(No symbol) [0x00007FF6CAB1BD04]\n\tBaseThreadInitThunk [0x00007FFD615E7344+20]\n\tRtlUserThreadStart [0x00007FFD630026B1+33]\n"
+}
