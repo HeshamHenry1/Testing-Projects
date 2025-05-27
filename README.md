@@ -59,4 +59,4 @@ Automation projects are organized by **framework** and then by tested applicatio
 
 📌 This repository is a snapshot of my journey in software testing, highlighting both core skills and continuous learning through real-world scenarios.
 
-📫 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/your-link) to explore collaborations or review more detailed case studies.
+📫 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/hesham-henry-413621204) to explore collaborations or review more detailed case studies.
