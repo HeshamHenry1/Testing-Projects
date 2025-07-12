@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b0a85d0-01f3-46da-8db8-6885e85e2a18" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2zjM5j2MXSgAlxJpzwSCLO3Wntn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;TestNG.CartTest.testGoToCheckout.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.CartTest.testRemoveItemFromCart.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.CheckoutTest.testFillUserDetailsAndContinue.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.LoginTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.LoginTest.failedLoginWithEmptyPasswordTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.LoginTest.failedLoginWithEmptyUsernameTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.LoginTest.failedLoginWithLockedOutUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.LoginTest.failedLoginWithWrongPasswordTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.LoginTest.successfulLoginTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ProductsTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ProductsTest.printNumberOfProducts.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ProductsTest.testAddBackpackToCart.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ProductsTest.testNavigationToCartAndVerifyItem.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ProductsTest.testRemoveBackpackFromCart.executor&quot;: &quot;Run&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="TestNG.CheckoutTest.testFillUserDetailsAndContinue">
+    <configuration name="CartTest.testGoToCheckout" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumWebDriverTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mytests.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mytests.login" />
+      <option name="MAIN_CLASS_NAME" value="com.mytests.login.CartTest" />
+      <option name="METHOD_NAME" value="testGoToCheckout" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CartTest.testRemoveItemFromCart" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumWebDriverTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mytests.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mytests.login" />
+      <option name="MAIN_CLASS_NAME" value="com.mytests.login.CartTest" />
+      <option name="METHOD_NAME" value="testRemoveItemFromCart" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CheckoutTest.testFillUserDetailsAndContinue" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumWebDriverTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mytests.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mytests.login" />
+      <option name="MAIN_CLASS_NAME" value="com.mytests.login.CheckoutTest" />
+      <option name="METHOD_NAME" value="testFillUserDetailsAndContinue" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductsTest.testNavigationToCartAndVerifyItem" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumWebDriverTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mytests.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mytests.login" />
+      <option name="MAIN_CLASS_NAME" value="com.mytests.login.ProductsTest" />
+      <option name="METHOD_NAME" value="testNavigationToCartAndVerifyItem" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductsTest.testRemoveBackpackFromCart" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumWebDriverTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mytests.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mytests.login" />
+      <option name="MAIN_CLASS_NAME" value="com.mytests.login.ProductsTest" />
+      <option name="METHOD_NAME" value="testRemoveBackpackFromCart" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.CheckoutTest.testFillUserDetailsAndContinue" />
+        <item itemvalue="TestNG.CartTest.testGoToCheckout" />
+        <item itemvalue="TestNG.CartTest.testRemoveItemFromCart" />
+        <item itemvalue="TestNG.ProductsTest.testNavigationToCartAndVerifyItem" />
+        <item itemvalue="TestNG.ProductsTest.testRemoveBackpackFromCart" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b0a85d0-01f3-46da-8db8-6885e85e2a18" name="Changes" comment="" />
+      <created>1752239850337</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752239850337</updated>
+      <workItem from="1752239852208" duration="12375000" />
+      <workItem from="1752324740517" duration="80000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>false</integration-enabled>
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
