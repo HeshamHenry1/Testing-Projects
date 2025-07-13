@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b0a85d0-01f3-46da-8db8-6885e85e2a18" name="Changes" comment="" />
+    <list default="true" id="6b0a85d0-01f3-46da-8db8-6885e85e2a18" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/CartPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/CartPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/CartTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/CartTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/CheckoutOverviewPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/CheckoutOverviewPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/CheckoutPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/CheckoutPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/CheckoutTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/CheckoutTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/LoginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/LoginPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/LoginTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/LoginTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/ProductsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/ProductsPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/mytests/login/ProductsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mytests/login/ProductsTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +27,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
@@ -48,7 +62,9 @@
     &quot;TestNG.ProductsTest.testAddBackpackToCart.executor&quot;: &quot;Run&quot;,
     &quot;TestNG.ProductsTest.testNavigationToCartAndVerifyItem.executor&quot;: &quot;Run&quot;,
     &quot;TestNG.ProductsTest.testRemoveBackpackFromCart.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Testing/Testing-Projects/Automation/selenium/Selenium_SauceDemo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -57,6 +73,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Testing\Testing-Projects\Automation\selenium\Selenium_SauceDemo\src\main\java" />
+    </key>
+  </component>
   <component name="RunManager" selected="TestNG.CheckoutTest.testFillUserDetailsAndContinue">
     <configuration name="CartTest.testGoToCheckout" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="SeleniumWebDriverTest" />
@@ -175,6 +196,8 @@
       <updated>1752239850337</updated>
       <workItem from="1752239852208" duration="12375000" />
       <workItem from="1752324740517" duration="80000" />
+      <workItem from="1752353091329" duration="356000" />
+      <workItem from="1752353827505" duration="6000" />
     </task>
     <servers />
   </component>
