@@ -1,40 +1,49 @@
-# Sauce Labs Demo Automation Project (Selenium & TestNG)
+# مستودع مشاريع أتمتة الاختبارات باستخدام Selenium
 
-This project is a test automation framework built to test the functionality of the [Sauce Labs Demo](https://www.saucedemo.com/ ) e-commerce website. It is developed using Java, Selenium, and TestNG.
+أهلاً بك في مستودع مشاريع أتمتة الاختبارات الخاص بي. هذا المجلد يحتوي على مجموعة من المشاريع التي تم بناؤها باستخدام **Selenium WebDriver** مع **Java** بهدف التدرب على وتطبيق مفاهيم وتقنيات مختلفة في مجال ضمان جودة البرمجيات (SQA).
 
-## Key Features
+كل مشروع في هذا المستودع يركز على موقع ويب مختلف ويطبق أفضل الممارسات في هندسة الأتمتة.
 
-*   **Page Object Model (POM):** The project follows the POM design pattern to create a scalable and maintainable test framework. Each page on the website is represented by a corresponding Java class.
-*   **TestNG Framework:** Used for structuring and running the tests, with support for annotations, assertions, and test grouping.
-*   **Selenium WebDriver:** Powers the browser automation to simulate user interactions.
-*   **Maven:** Used for project and dependency management.
+---
 
-## Tests Covered
+## 📂 المشاريع المتاحة
 
-This framework includes test cases for critical user flows, such as:
-- Successful and failed user logins.
-- Adding products to the shopping cart.
-- Removing products from the cart.
-- Completing the checkout process.
+يحتوي هذا المستودع حاليًا على المشاريع التالية:
 
-## How to Run the Tests
+### 1. مشروع `Automationexercise_Selenium`
+-   **الموقع المستهدف**: [Automation Exercise](http://automationexercise.com )
+-   **الوصف**: مشروع شامل ومتكامل يغطي أكثر من 25 حالة اختبار (Test Case) لوظائف الموقع بالكامل. تم بناء هذا المشروع باستخدام نمط تصميم كائنات الصفحة (Page Object Model) ويشمل اختبارات لدورة حياة المستخدم كاملة، من تسجيل الحساب وحتى إتمام عملية الشراء والتحقق من الفواتير.
+-   **التقنيات**: Java, Selenium WebDriver, TestNG, Maven, WebDriverManager.
+-   **الحالة**: مكتمل.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/HeshamHenry1/Testing-Projects.git
-    ```
-2.  **Navigate to the project directory:**
-    ```bash
-    cd Testing-Projects/Automation/selenium/Selenium_SauceDemo
-    ```
-3.  **Run the tests using Maven:**
-    ```bash
-    mvn clean test
-    ```
+### 2. مشروع `SauceDemo_swagslab`
+-   **الموقع المستهدف**: [Sauce Demo](https://www.saucedemo.com/ )
+-   **الوصف**: مشروع يركز على اختبار وظائف موقع تجارة إلكترونية بسيط. يغطي هذا المشروع سيناريوهات تسجيل الدخول، إضافة المنتجات إلى السلة، وإتمام عملية الشراء. يعتبر مثالاً ممتازًا على تطبيق أساسيات Selenium و TestNG.
+-   **التقنيات**: Java, Selenium WebDriver, TestNG, Maven.
+-   **الحالة**: مكتمل.
 
-## Technologies Used
+---
 
-*   **Language:** Java
-*   **Automation Tool:** Selenium
-*   **Test Runner:** TestNG
-*   **Build Tool:** Maven
+## 🛠️ التقنيات المشتركة
+
+تستخدم كل المشاريع في هذا المستودع مجموعة أساسية من التقنيات:
+-   **لغة البرمجة**: Java
+-   **أداة الأتمتة**: Selenium WebDriver
+-   **إطار عمل الاختبار**: TestNG
+-   **إدارة المشروع**: Apache Maven
+
+## 🚀 كيفية استكشاف المشاريع
+
+-   كل مجلد يحتوي على مشروع Maven مستقل بذاته.
+-   يمكنك فتح أي من هذه المشاريع باستخدام محرر أكواد مثل IntelliJ IDEA أو Eclipse.
+-   للحصول على تفاصيل أكثر حول كل مشروع، يرجى الرجوع إلى ملف `README.md` الموجود داخل مجلد المشروع نفسه.
+
+---
+
+## 👨‍💻 عن المؤلف
+
+**هشام**
+-   مهندس ضمان جودة برمجيات متخصص في أتمتة الاختبارات.
+-   [رابط ملفك على LinkedIn] (اختياري)
+-   [رابط ملفك على GitHub] (اختياري)
+
