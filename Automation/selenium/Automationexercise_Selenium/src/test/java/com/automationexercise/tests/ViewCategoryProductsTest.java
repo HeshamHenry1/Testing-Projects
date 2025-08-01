@@ -24,7 +24,7 @@ public class ViewCategoryProductsTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
         categoryPage = new CategoryPage(driver);
     }
@@ -42,7 +42,7 @@ public class ViewCategoryProductsTest {
         homePage.clickWomenDressSubCategory();
 
         // 6. Verify that category page is displayed and confirm text 'WOMEN - DRESS PRODUCTS'
-        // ملاحظة: النص الفعلي هو 'WOMEN - DRESS PRODUCTS' وليس 'TOPS'
+
         String expectedWomenCategoryTitle = "WOMEN - DRESS PRODUCTS";
         Assert.assertEquals(categoryPage.getCategoryTitleText(), expectedWomenCategoryTitle, "Women category page title is incorrect.");
         Assert.assertTrue(driver.getCurrentUrl().contains("category_products/1"), "URL for Women's Dress category is incorrect.");

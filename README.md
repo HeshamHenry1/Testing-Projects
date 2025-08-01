@@ -46,12 +46,19 @@ Automation projects are organized by **framework** and then by tested applicatio
 | [Automation Exercise (Cypress)](./Automation/cypress/e2e) | Tests using Cypress, includes screenshots and reports |
 | 📂 Additional folders: `downloads/`, `fixtures/`, `support/`, with test reports and configs |
 
+### 🌐 Selenium Projects
+
+| Project | Description |
+|---------|-------------|
+| [Swag Labs - Selenium](./Automation/Selenium/SwagLabs) | UI automation for Swag Labs using Selenium WebDriver |
+| [AutomationExercise - Selenium](./Automation/Selenium/AutomationExercise) | E2E tests for AutomationExercise using Selenium WebDriver |
+
 ---
 
 ## 🛠️ Tools & Technologies Used
 
 - **Manual Testing**: TestRail, Excel
-- **Automation**: Playwright, WebDriverIO, Cypress
+- **Automation**: Playwright, WebDriverIO, Cypress, Selenium
 - **Test Management**: Git, GitHub, CI-ready structures
 - **Reporting**: mochawesome, HTML reports
 

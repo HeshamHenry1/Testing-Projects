@@ -26,14 +26,14 @@ public class LogoutUserTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         signupLoginPage = new signLoginPage(driver);
 
         // 3. Verify that home page is visible successfully
         Assert.assertTrue(driver.getTitle().contains("Automation Exercise"), "Home page is not visible.");
 
-        // == الخطوة التحضيرية: تسجيل الدخول ==
+
         // 4. Click on 'Signup / Login' button
         homePage.clickSignupLoginLink();
 

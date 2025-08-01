@@ -27,7 +27,7 @@ public class VerifyProductQuantityTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
@@ -39,7 +39,7 @@ public class VerifyProductQuantityTest {
         Assert.assertTrue(driver.getTitle().contains("Automation Exercise"));
 
         // 4. Click 'View Product' for any product on home page
-        // سنستخدم أول منتج كمثال
+
         productsPage.clickFirstProductViewLink();
 
         // 5. Verify product detail is opened

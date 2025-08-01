@@ -23,7 +23,7 @@ public class ScrollFunctionalityTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
     }
 
@@ -42,7 +42,7 @@ public class ScrollFunctionalityTest {
         homePage.clickScrollUpArrow();
 
         // 7. Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
-        // قد يستغرق التمرير للأعلى لحظة، لذلك ننتظر ظهور النص
+
         Assert.assertTrue(homePage.isFullFledgedTextVisible(), "Page did not scroll up, or the top text is not visible.");
     }
 

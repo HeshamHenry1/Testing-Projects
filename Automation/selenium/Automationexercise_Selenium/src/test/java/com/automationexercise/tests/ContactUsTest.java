@@ -25,7 +25,7 @@ public class ContactUsTest {
         // 2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com" );
 
-        // تهيئة صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         contactUsPage = new ContactUsPage(driver);
     }
@@ -36,7 +36,7 @@ public class ContactUsTest {
         Assert.assertTrue(driver.getTitle().contains("Automation Exercise"), "Home page is not visible.");
 
         // 4. Click on 'Contact Us' button
-        homePage.clickContactUsLink(); // نفترض وجود هذه الدالة في HomePage
+        homePage.clickContactUsLink();
 
         // 5. Verify 'GET IN TOUCH' is visible
         Assert.assertEquals(contactUsPage.getGetInTouchTitle(), "GET IN TOUCH", "'GET IN TOUCH' title is not visible.");
@@ -62,7 +62,7 @@ public class ContactUsTest {
         // 11. Click 'Home' button and verify that landed to home page successfully
         contactUsPage.clickHomeButton();
 
-        // التحقق من أننا عدنا للصفحة الرئيسية عن طريق التأكد من أن عنوان URL هو الصفحة الرئيسية
+
         Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/", "Did not land back on the home page." );
     }
     @AfterMethod

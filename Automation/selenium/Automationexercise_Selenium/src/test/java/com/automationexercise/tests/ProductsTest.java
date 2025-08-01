@@ -27,7 +27,7 @@ public class ProductsTest {
         // 2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com" );
 
-        // تهيئة صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
     }
@@ -52,7 +52,7 @@ public class ProductsTest {
         productsPage.clickFirstProductViewLink();
 
         // 8. User is landed to product detail page
-        // نتحقق من أن الرابط يحتوي على تفاصيل منتج (مثلاً /product_details/1)
+
         Assert.assertTrue(driver.getCurrentUrl().contains("/product_details/"), "User is not on a product detail page.");
 
         // 9. Verify that detail is visible: product name, category, price, availability, condition, brand

@@ -26,7 +26,7 @@ public class SubscriptionInCartTest {
         // 2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com" );
 
-        // تهيئة صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         cartPage = new CartPage(driver);
     }

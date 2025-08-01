@@ -27,7 +27,7 @@ public class AddRecommendedProductTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
         cartPage = new CartPage(driver);
     }
@@ -48,7 +48,7 @@ public class AddRecommendedProductTest {
         homePage.clickViewCartInModal();
 
         // 7. Verify that product is displayed in cart page
-        // أبسط طريقة للتحقق هي التأكد من أن عدد المنتجات في السلة هو 1
+
         Assert.assertEquals(cartPage.getNumberOfProductsInCart(), 1, "Product from recommended items was not added to the cart.");
     }
 

@@ -91,22 +91,17 @@ public class signLoginPage {
         return signupErrorMessage.getText();
     }
     public void login(String email, String password) {
-        // الخطوة 1: إدخال البريد الإلكتروني
         enterLoginEmail(email);
 
-        // الخطوة 2: إدخال كلمة المرور
         enterLoginPassword(password);
 
-        // الخطوة 3: الضغط على زر تسجيل الدخول
         clickLoginButton();
     }
 
     public void signupAndCreateAccount(String name, String email, String title, String password, String day, String month, String year, String firstName, String lastName, String company, String address1, String address2, String country, String state, String city, String zipcode, String mobile) {
-        // هذه الكائنات يجب أن تكون معرفة كمتغيرات عضو في الكلاس
         AccountInformationPage accountInformationPage = new AccountInformationPage(driver);
         AccountCreatedPage accountCreatedPage = new AccountCreatedPage(driver);
 
-        // خطوات التسجيل
         this.enterSignupName(name);
         this.enterSignupEmail(email);
         this.clickSignupButton();

@@ -27,7 +27,7 @@ public class AddReviewTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
     }
@@ -52,7 +52,7 @@ public class AddReviewTest {
         String review = "This is a great product! Highly recommended.";
         productsPage.submitReview(name, email, review);
 
-        // 8. Click 'Submit' button (تمت في الخطوة السابقة)
+        // 8. Click 'Submit' button
 
         // 9. Verify success message 'Thank you for your review.'
         String expectedMessage = "Thank you for your review.";

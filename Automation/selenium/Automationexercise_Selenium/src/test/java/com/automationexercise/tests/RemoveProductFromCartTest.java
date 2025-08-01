@@ -27,7 +27,7 @@ public class RemoveProductFromCartTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
@@ -43,19 +43,19 @@ public class RemoveProductFromCartTest {
         // 4. Add products to cart
         homePage.clickProductsLink();
         productsPage.addProductToCart(productsPage.getFirstProduct());
-        productsPage.clickViewCart(); // ننتقل مباشرة إلى السلة بعد الإضافة
+        productsPage.clickViewCart();
 
-        // 5. Click 'Cart' button (تم تنفيذها ضمنيًا في الخطوة السابقة)
+
         // 6. Verify that cart page is displayed
         Assert.assertTrue(driver.getCurrentUrl().contains("/view_cart"), "Cart page is not displayed.");
-        // نتأكد أن السلة ليست فارغة قبل الحذف
+
         Assert.assertEquals(cartPage.getNumberOfProductsInCart(), 1, "Product was not added to cart correctly.");
 
         // 7. Click 'X' button corresponding to particular product
         cartPage.clickDeleteButtonForFirstProduct();
 
         // 8. Verify that product is removed from the cart
-        // أفضل طريقة للتحقق هي التأكد من ظهور رسالة "Cart is empty!"
+
         Assert.assertTrue(cartPage.isCartEmpty(), "Product was not removed from the cart, or 'Cart is empty!' message is not visible.");
     }
 

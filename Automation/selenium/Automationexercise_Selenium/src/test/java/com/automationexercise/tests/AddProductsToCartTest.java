@@ -28,7 +28,7 @@ public class AddProductsToCartTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
@@ -60,14 +60,14 @@ public class AddProductsToCartTest {
         // 10. Verify their prices, quantity and total price
         List<Map<String, String>> productsInCart = cartPage.getProductsDetailsInCart();
 
-        // التحقق من المنتج الأول
+
         Map<String, String> firstProductDetails = productsInCart.get(0);
         Assert.assertEquals(firstProductDetails.get("name"), "Blue Top");
         Assert.assertEquals(firstProductDetails.get("price"), "Rs. 500");
         Assert.assertEquals(firstProductDetails.get("quantity"), "1");
         Assert.assertEquals(firstProductDetails.get("total"), "Rs. 500");
 
-        // التحقق من المنتج الثاني
+
         Map<String, String> secondProductDetails = productsInCart.get(1);
         Assert.assertEquals(secondProductDetails.get("name"), "Men Tshirt");
         Assert.assertEquals(secondProductDetails.get("price"), "Rs. 400");

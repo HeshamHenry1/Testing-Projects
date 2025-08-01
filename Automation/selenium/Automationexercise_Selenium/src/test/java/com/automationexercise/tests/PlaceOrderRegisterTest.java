@@ -31,7 +31,7 @@ public class PlaceOrderRegisterTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة كل صفحات الـ Page Objects التي سنحتاجها
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
@@ -70,7 +70,7 @@ public class PlaceOrderRegisterTest {
         signupLoginPage.enterSignupName(name);
         signupLoginPage.enterSignupEmail(email);
         signupLoginPage.clickSignupButton();
-        // ... (تعبئة باقي تفاصيل الحساب)
+
         accountInformationPage.selectTitle("Mr.");
         accountInformationPage.enterPassword("password123");
         accountInformationPage.selectDateOfBirth("10", "January", "1990");
@@ -104,7 +104,7 @@ public class PlaceOrderRegisterTest {
         paymentPage.clickPayAndConfirmButton();
 
         // 18. Verify success message 'Your order has been placed successfully!'
-        // ملاحظة: رسالة النجاح الحقيقية قد تكون مختلفة قليلاً أو لا تظهر
+
         // Assert.assertEquals(paymentPage.getOrderSuccessMessage(), "Your order has been placed successfully!");
 
         // 19. Click 'Delete Account' button

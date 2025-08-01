@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class DownloadInvoiceTest {
 
     WebDriver driver;
-    // كل الصفحات التي سنحتاجها
+
     HomePage homePage;
     ProductsPage productsPage;
     CartPage cartPage;
@@ -31,7 +31,7 @@ public class DownloadInvoiceTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة كل صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
@@ -103,13 +103,13 @@ public class DownloadInvoiceTest {
         // 17. Click 'Pay and Confirm Order' button
         paymentPage.clickPayAndConfirmButton();
 
-        // 18. Verify success message (قد تكون هذه الخطوة غير موثوقة)
+        // 18. Verify success message
         // Assert.assertTrue(paymentPage.getOrderSuccessMessage().contains("placed successfully"));
 
         // 19. Click 'Download Invoice' button and verify invoice is downloaded successfully.
         Assert.assertTrue(paymentPage.isDownloadInvoiceButtonVisible(), "'Download Invoice' button is not visible.");
         paymentPage.clickDownloadInvoiceButton();
-        // التحقق من التحميل سيتم بطريقة غير مباشرة (سنتأكد لاحقًا أننا نستطيع المتابعة)
+
 
         // 20. Click 'Continue' button
         paymentPage.clickContinueAfterPurchase();

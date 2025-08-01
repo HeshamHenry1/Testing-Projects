@@ -41,10 +41,19 @@ These projects reflect both learning exercises and near real-world scenarios acr
 
 ---
 
+### 🌐 Selenium
+
+| Project                 | Description                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+| **Swag Labs - Selenium** | UI automation for Swag Labs using Selenium WebDriver |
+| **AutomationExercise - Selenium** | E2E tests for AutomationExercise using Selenium WebDriver |
+
+---
+
 ## 🔧 Tools & Technologies
 
 - **Languages:** JavaScript, TypeScript  
-- **Frameworks:** Playwright, WebDriverIO, Cypress  
+- **Frameworks:** Playwright, WebDriverIO, Cypress, Selenium  
 - **Patterns:** Page Object Model (POM), Data-driven testing  
 - **Reporting:** mochawesome, Allure (optional), HTML  
 - **Version Control:** Git, GitHub  

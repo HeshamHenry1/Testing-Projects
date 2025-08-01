@@ -1,83 +1,85 @@
-# مشروع أتمتة اختبار موقع Automation Exercise
+# Automation Exercise Website Test Automation Project
 
-هذا المشروع يحتوي على مجموعة شاملة من اختبارات الأتمتة (Automation Tests) لموقع [Automation Exercise](http://automationexercise.com )، وهو موقع مصمم خصيصًا للتدرب على أتمتة اختبارات تطبيقات الويب. تم بناء هذا المشروع باستخدام Java، Selenium WebDriver، TestNG، و Maven.
+This project contains a comprehensive set of Automation Tests for the [Automation Exercise](http://automationexercise.com) website, which is specifically designed for practicing web application test automation. This project was built using Java, Selenium WebDriver, TestNG, and Maven.
 
-## 🌟 نظرة عامة على المشروع
+## 🌟 Project Overview
 
-الهدف من هذا المشروع هو تطبيق أفضل الممارسات في أتمتة الاختبارات، بما في ذلك:
--   **نمط تصميم كائنات الصفحة (Page Object Model - POM)**: لفصل منطق الاختبار عن محددات عناصر الصفحة، مما يجعل الكود أكثر تنظيمًا وسهولة في الصيانة.
--   **إدارة الاعتماديات باستخدام Maven**: لسهولة إدارة المكتبات الخارجية وضمان بناء المشروع بشكل متسق.
--   **إطار عمل الاختبار TestNG**: لتنظيم حالات الاختبار، وإدارتها، وتنفيذها، وإنشاء تقارير مفصلة.
--   **WebDriverManager**: لأتمتة إدارة تعريفات المتصفح (drivers) بسهولة.
-
----
-
-## 💻 التقنيات والأدوات المستخدمة
-
--   **لغة البرمجة**: [Java](https://www.java.com/ )
--   **أداة الأتمتة**: [Selenium WebDriver](https://www.selenium.dev/ )
--   **إطار عمل الاختبار**: [TestNG](https://testng.org/ )
--   **أداة بناء المشروع وإدارة الاعتماديات**: [Apache Maven](https://maven.apache.org/ )
--   **مكتبة مساعدة**: [WebDriverManager](https://github.com/bonigarcia/webdrivermanager )
+The goal of this project is to apply best practices in test automation, including:
+-   **Page Object Model (POM)**: To separate test logic from page element locators, making the code more organized and easier to maintain.
+-   **Dependency Management with Maven**: For easy management of external libraries and ensuring consistent project builds.
+-   **TestNG Testing Framework**: For organizing, managing, executing test cases, and generating detailed reports.
+-   **WebDriverManager**: To automate the management of browser drivers easily.
 
 ---
 
-## ✅ حالات الاختبار التي تمت تغطيتها
+## 💻 Technologies and Tools Used
 
-يغطي هذا المشروع 26 حالة اختبار شاملة تغطي معظم وظائف الموقع الرئيسية:
-
-1.  **التسجيل (Register User)**: التحقق من إنشاء حساب جديد بنجاح.
-2.  **تسجيل الدخول (Login User)**: التحقق من تسجيل الدخول ببيانات صحيحة وغير صحيحة.
-3.  **تسجيل الخروج (Logout User)**: التحقق من تسجيل الخروج بنجاح.
-4.  **التسجيل مع بريد إلكتروني موجود مسبقًا**.
-5.  **نموذج "اتصل بنا" (Contact Us Form)**.
-6.  **التحقق من صفحة حالات الاختبار (Test Cases Page)**.
-7.  **التحقق من صفحة المنتجات وتفاصيلها (Products & Product Detail Page)**.
-8.  **البحث عن منتج (Search Product)**.
-9.  **الاشتراك في النشرة البريدية (Subscription)** من الصفحة الرئيسية وصفحة السلة.
-10. **إضافة منتجات إلى السلة (Add Products to Cart)**.
-11. **التحقق من كمية المنتج في السلة (Product Quantity in Cart)**.
-12. **إتمام الطلب (Place Order)**: سيناريوهات التسجيل قبل وأثناء الدفع، وتسجيل الدخول قبل الدفع.
-13. **حذف المنتجات من السلة (Remove Products From Cart)**.
-14. **عرض المنتجات حسب الفئة والعلامة التجارية (Category & Brand Products)**.
-15. **استمرارية سلة التسوق بعد تسجيل الدخول**.
-16. **إضافة مراجعة على منتج (Add review on product)**.
-17. **إضافة منتج من قسم "العناصر الموصى بها" (Recommended items)**.
-18. **التحقق من تفاصيل العنوان عند الدفع**.
-19. **تحميل الفاتورة بعد الشراء**.
-20. **التحقق من وظائف التمرير (Scroll Up/Down)**.
+-   **Programming Language**: [Java](https://www.java.com/)
+-   **Automation Tool**: [Selenium WebDriver](https://www.selenium.dev/)
+-   **Testing Framework**: [TestNG](https://testng.org/)
+-   **Build Automation and Dependency Management Tool**: [Apache Maven](https://maven.apache.org/)
+-   **Helper Library**: [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
 
 ---
 
-## 🚀 كيفية تشغيل المشروع
+## ✅ Test Cases Covered
 
-لتشغيل هذا المشروع على جهازك، اتبع الخطوات التالية:
+This project covers 26 comprehensive test cases covering most of the main website functionalities:
 
-### المتطلبات المسبقة
--   تثبيت [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads/ ) (إصدار 11 أو أحدث).
--   تثبيت [Apache Maven](https://maven.apache.org/download.cgi ).
--   تثبيت متصفح Google Chrome.
--   محرر أكواد مثل [IntelliJ IDEA](https://www.jetbrains.com/idea/ ) أو [Eclipse](https://www.eclipse.org/ ).
+1.  **Register User**: Verify successful creation of a new account.
+2.  **Login User**: Verify login with valid and invalid credentials.
+3.  **Logout User**: Verify successful logout.
+4.  **Register with existing email**.
+5.  **Contact Us Form**.
+6.  **Verify Test Cases Page**.
+7.  **Verify Products & Product Detail Page**.
+8.  **Search Product**.
+9.  **Subscription**: From Home Page and Cart Page.
+10. **Add Products to Cart**.
+11. **Verify Product Quantity in Cart**.
+12. **Place Order**: Scenarios for registration before and during checkout, and login before checkout.
+13. **Remove Products From Cart**.
+14. **View Products by Category & Brand**.
+15. **Cart Continuity after Login**.
+16. **Add review on product**.
+17. **Add product from "Recommended items" section**.
+18. **Verify address details at checkout**.
+19. **Download invoice after purchase**.
+20. **Verify Scroll Up/Down functionality**.
 
-### خطوات التشغيل
+---
 
-1.  **استنساخ المستودع (Clone the repository):**
+## 🚀 How to Run the Project
+
+To run this project on your machine, follow these steps:
+
+### Prerequisites
+-   Install [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads/) (version 11 or later).
+-   Install [Apache Maven](https://maven.apache.org/download.cgi).
+-   Install Google Chrome browser.
+-   An IDE like [IntelliJ IDEA](https://www.jetbrains.com/idea/) or [Eclipse](https://www.eclipse.org/).
+
+### Running Steps
+
+1.  **Clone the repository:**
     ```bash
-    git clone [رابط المستودع الخاص بك على GitHub]
+    git clone [Your GitHub repository link]
     cd Automationexercise_Selenium
     ```
 
-2.  **فتح المشروع في IntelliJ IDEA:**
-    -   من القائمة، اختر `File` -> `Open...`.
-    -   اذهب إلى المجلد الذي قمت باستنساخه واختر ملف `pom.xml`.
-    -   اختر `Open as Project`.
-    -   سيقوم IntelliJ IDEA تلقائيًا بتحميل كل الاعتماديات (dependencies) المذكورة في `pom.xml`.
+2.  **Open the project in IntelliJ IDEA:**
+    -   From the menu, select `File` -> `Open...`.
+    -   Navigate to the cloned folder and select the `pom.xml` file.
+    -   Choose `Open as Project`.
+    -   IntelliJ IDEA will automatically download all dependencies listed in `pom.xml`.
 
-3.  **تشغيل الاختبارات:**
-    -   يمكنك تشغيل كل الاختبارات مرة واحدة عن طريق ملف `testng.xml` (إذا قمت بإنشائه).
-    -   أو يمكنك تشغيل كلاس اختبار معين عن طريق فتحه، والنقر بالزر الأيمن، واختيار `Run 'TestClassName'`.
+3.  **Run the Tests:**
+    -   You can run all tests at once via the `testng.xml` file (if you have created one).
+    -   Alternatively, you can run a specific test class by opening it, right-clicking, and selecting `Run 'TestClassName'`.
 
 ---
 
-## 🏛️ هيكل المشروع
+## 🏛️ Project Structure
+
+
 

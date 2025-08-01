@@ -26,7 +26,7 @@ public class SearchProductTest {
         // 2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com" );
 
-        // تهيئة صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
     }
@@ -47,11 +47,11 @@ public class SearchProductTest {
         productsPage.searchForProduct(PRODUCT_TO_SEARCH);
 
         // 7. Verify 'SEARCHED PRODUCTS' is visible
-        // يجب استدعاء الدالة الصحيحة للتحقق من العنوان
+
         Assert.assertTrue(productsPage.isSearchedProductsTitleVisible(), "'SEARCHED PRODUCTS' title is not visible.");
 
         // 8. Verify all the products related to search are visible
-        // هذا التحقق صحيح، وسيفشل إذا كان هناك منتج غير مطابق، وهذا هو السلوك المتوقع
+
         Assert.assertTrue(productsPage.areAllSearchedProductsRelated(PRODUCT_TO_SEARCH),
                 "Not all products in the search result are related to the search term '" + PRODUCT_TO_SEARCH + "'.");
     }

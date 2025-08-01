@@ -37,7 +37,7 @@ public class VerifyAddressDetailsTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة كل صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         signupLoginPage = new signLoginPage(driver);
         accountInformationPage = new AccountInformationPage(driver);
@@ -59,7 +59,7 @@ public class VerifyAddressDetailsTest {
         homePage.clickSignupLoginLink();
 
         // 5. Fill all details in Signup and create account
-        // -- نخزن البيانات في الـ Map قبل استخدامها --
+
         registrationData = new HashMap<>();
         registrationData.put("title", "Mr.");
         registrationData.put("name", "Test " + System.currentTimeMillis());
@@ -117,7 +117,7 @@ public class VerifyAddressDetailsTest {
         // 12. Verify that the delivery address is same address filled at the time registration
         List<String> deliveryAddress = checkoutPage.getDeliveryAddressDetails();
 
-// للطباعة والتأكد من شكل البيانات (خطوة اختيارية لتصحيح الأخطاء)
+
         System.out.println("Delivery Address found on page: " + deliveryAddress);
 
         // 13. Verify that the billing address is same address filled at the time registration

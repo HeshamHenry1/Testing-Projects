@@ -32,7 +32,7 @@ public class PlaceOrderLoginBeforeCheckoutTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة كل صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         signupLoginPage = new signLoginPage(driver);
         productsPage = new ProductsPage(driver);
@@ -41,10 +41,9 @@ public class PlaceOrderLoginBeforeCheckoutTest {
         paymentPage = new PaymentPage(driver);
         accountDeletedPage = new AccountDeletedPage(driver);
 
-        // **الخطوة التحضيرية: إنشاء حساب جديد قبل بدء كل اختبار**
-        // هذا يضمن وجود مستخدم صالح لتسجيل الدخول به
+
         homePage.clickSignupLoginLink();
-        // نفترض وجود دالة مجمعة للتسجيل في signLoginPage
+
         signupLoginPage.signupAndCreateAccount(
                 TEST_USERNAME,
                 TEST_EMAIL,
@@ -53,7 +52,6 @@ public class PlaceOrderLoginBeforeCheckoutTest {
                 "10", "March", "1990",
                 "Test", "User", "Test Inc.", "123 Main St", "Apt 4B", "United States", "Texas", "Dallas", "75201", "5551234567"
         );
-        // بعد التسجيل، الموقع يقوم بتسجيل الخروج تلقائيًا، وهذا مثالي لاختبارنا
     }
     @Test(description = "Test Case 16: Place Order: Login before Checkout")
     public void testLoginBeforeCheckout() {
@@ -102,8 +100,7 @@ public class PlaceOrderLoginBeforeCheckoutTest {
 
     @AfterMethod
     public void tearDown() {
-        // **الخطوة النهائية: حذف الحساب لضمان نظافة البيئة للاختبار القادم**
-        // (هذه الخطوة اختيارية ولكنها من أفضل الممارسات)
+
         if (driver != null) {
             try {
                 homePage.clickDeleteAccountLink();

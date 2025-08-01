@@ -25,7 +25,7 @@ public class TestCasesPageTest {
         // 2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com" );
 
-        // تهيئة صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
     }
 
@@ -38,12 +38,11 @@ public class TestCasesPageTest {
         homePage.clickTestCasesLink();
 
         // 5. Verify user is navigated to test cases page successfully
-        // التحقق الأول: التأكد من أن رابط الصفحة صحيح
+
         String expectedUrl = "https://automationexercise.com/test_cases";
         Assert.assertEquals(driver.getCurrentUrl( ), expectedUrl, "User is not navigated to the test cases page.");
 
-        // التحقق الثاني (أكثر قوة): التأكد من وجود عنوان مميز في صفحة حالات الاختبار
-        // على سبيل المثال، عنوان "TEST CASES"
+
         String pageTitle = driver.findElement(By.xpath("//h2/b[text()='Test Cases']")).getText();
         Assert.assertEquals(pageTitle, "TEST CASES", "Test Cases page title is not visible or incorrect.");
     }

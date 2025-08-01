@@ -26,7 +26,7 @@ public class ViewBrandProductsTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة الصفحات
+
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
     }

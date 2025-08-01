@@ -1,49 +1,50 @@
-# مستودع مشاريع أتمتة الاختبارات باستخدام Selenium
+# 🚀 Selenium WebDriver Automation Projects
 
-أهلاً بك في مستودع مشاريع أتمتة الاختبارات الخاص بي. هذا المجلد يحتوي على مجموعة من المشاريع التي تم بناؤها باستخدام **Selenium WebDriver** مع **Java** بهدف التدرب على وتطبيق مفاهيم وتقنيات مختلفة في مجال ضمان جودة البرمجيات (SQA).
+Welcome to my collection of automation testing projects! This repository showcases various projects built using **Selenium WebDriver** with **Java**, designed to practice and apply diverse concepts and techniques in Software Quality Assurance (SQA).
 
-كل مشروع في هذا المستودع يركز على موقع ويب مختلف ويطبق أفضل الممارسات في هندسة الأتمتة.
-
----
-
-## 📂 المشاريع المتاحة
-
-يحتوي هذا المستودع حاليًا على المشاريع التالية:
-
-### 1. مشروع `Automationexercise_Selenium`
--   **الموقع المستهدف**: [Automation Exercise](http://automationexercise.com )
--   **الوصف**: مشروع شامل ومتكامل يغطي أكثر من 25 حالة اختبار (Test Case) لوظائف الموقع بالكامل. تم بناء هذا المشروع باستخدام نمط تصميم كائنات الصفحة (Page Object Model) ويشمل اختبارات لدورة حياة المستخدم كاملة، من تسجيل الحساب وحتى إتمام عملية الشراء والتحقق من الفواتير.
--   **التقنيات**: Java, Selenium WebDriver, TestNG, Maven, WebDriverManager.
--   **الحالة**: مكتمل.
-
-### 2. مشروع `SauceDemo_swagslab`
--   **الموقع المستهدف**: [Sauce Demo](https://www.saucedemo.com/ )
--   **الوصف**: مشروع يركز على اختبار وظائف موقع تجارة إلكترونية بسيط. يغطي هذا المشروع سيناريوهات تسجيل الدخول، إضافة المنتجات إلى السلة، وإتمام عملية الشراء. يعتبر مثالاً ممتازًا على تطبيق أساسيات Selenium و TestNG.
--   **التقنيات**: Java, Selenium WebDriver, TestNG, Maven.
--   **الحالة**: مكتمل.
+Each project within this repository focuses on a different web application and implements best practices in automation engineering.
 
 ---
 
-## 🛠️ التقنيات المشتركة
+## 📂 Available Projects
 
-تستخدم كل المشاريع في هذا المستودع مجموعة أساسية من التقنيات:
--   **لغة البرمجة**: Java
--   **أداة الأتمتة**: Selenium WebDriver
--   **إطار عمل الاختبار**: TestNG
--   **إدارة المشروع**: Apache Maven
+This repository currently features the following projects:
 
-## 🚀 كيفية استكشاف المشاريع
+### 1. `Automationexercise_Selenium` Project
+-   **Target Website**: [Automation Exercise](http://automationexercise.com)
+-   **Description**: A comprehensive project covering over 25 test cases for the entire website's functionality. This project is built using the Page Object Model (POM) design pattern and includes tests for the complete user lifecycle, from account registration to completing a purchase and verifying invoices.
+-   **Technologies**: Java, Selenium WebDriver, TestNG, Maven, WebDriverManager.
+-   **Status**: Completed.
 
--   كل مجلد يحتوي على مشروع Maven مستقل بذاته.
--   يمكنك فتح أي من هذه المشاريع باستخدام محرر أكواد مثل IntelliJ IDEA أو Eclipse.
--   للحصول على تفاصيل أكثر حول كل مشروع، يرجى الرجوع إلى ملف `README.md` الموجود داخل مجلد المشروع نفسه.
+### 2. `SauceDemo_swagslab` Project
+-   **Target Website**: [Sauce Demo](https://www.saucedemo.com/)
+-   **Description**: This project focuses on testing the functionalities of a simple e-commerce website. It covers scenarios such as user login, adding products to the cart, and completing the checkout process. It serves as an excellent example of applying Selenium and TestNG fundamentals.
+-   **Technologies**: Java, Selenium WebDriver, TestNG, Maven.
+-   **Status**: Completed.
 
 ---
 
-## 👨‍💻 عن المؤلف
+## 🛠️ Common Technologies
 
-**هشام**
--   مهندس ضمان جودة برمجيات متخصص في أتمتة الاختبارات.
--   [رابط ملفك على LinkedIn] (اختياري)
--   [رابط ملفك على GitHub] (اختياري)
+All projects in this repository utilize a core set of technologies:
+-   **Programming Language**: Java
+-   **Automation Tool**: Selenium WebDriver
+-   **Testing Framework**: TestNG
+-   **Build Automation Tool**: Apache Maven
+
+## 🚀 How to Explore the Projects
+
+-   Each folder contains an independent Maven project.
+-   You can open any of these projects using an IDE like IntelliJ IDEA or Eclipse.
+-   For more detailed information about each project, please refer to the `README.md` file located within its respective project folder.
+
+---
+
+## 👨‍💻 About the Author
+
+**Hesham Henry**
+-   Software Quality Assurance Engineer specializing in Test Automation.
+-   [LinkedIn Profile](https://www.linkedin.com/in/hesham-henry-413621204) (Optional: Replace with your actual LinkedIn URL)
+-   [GitHub Profile](https://github.com/your-github-profile) (Optional: Replace with your actual GitHub URL)
+
 

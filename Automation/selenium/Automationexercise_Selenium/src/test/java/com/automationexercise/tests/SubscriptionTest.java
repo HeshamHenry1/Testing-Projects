@@ -25,7 +25,7 @@ public class SubscriptionTest {
         // 2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com" );
 
-        // تهيئة صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
     }
 
@@ -41,7 +41,7 @@ public class SubscriptionTest {
         Assert.assertTrue(homePage.isSubscriptionTitleVisible(), "'SUBSCRIPTION' title is not visible in the footer.");
 
         // 6. Enter email address in input and click arrow button
-        // نستخدم بريدًا إلكترونيًا فريدًا في كل مرة لتجنب مشاكل الاشتراك المسبق
+
         String emailToSubscribe = "test.subscribe." + System.currentTimeMillis() + "@example.com";
         homePage.subscribeWithEmail(emailToSubscribe);
 

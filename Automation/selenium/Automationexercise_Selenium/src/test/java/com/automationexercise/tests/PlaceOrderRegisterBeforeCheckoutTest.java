@@ -31,7 +31,7 @@ public class PlaceOrderRegisterBeforeCheckoutTest {
         driver.manage().window().maximize();
         driver.get("http://automationexercise.com" );
 
-        // تهيئة كل صفحات الـ Page Objects
+
         homePage = new HomePage(driver);
         signupLoginPage = new signLoginPage(driver);
         accountInformationPage = new AccountInformationPage(driver);
@@ -57,7 +57,7 @@ public class PlaceOrderRegisterBeforeCheckoutTest {
         signupLoginPage.enterSignupName(name);
         signupLoginPage.enterSignupEmail(email);
         signupLoginPage.clickSignupButton();
-        // تعبئة باقي تفاصيل الحساب
+
         accountInformationPage.selectTitle("Mr.");
         accountInformationPage.enterPassword("password123");
         accountInformationPage.selectDateOfBirth("15", "July", "1995");

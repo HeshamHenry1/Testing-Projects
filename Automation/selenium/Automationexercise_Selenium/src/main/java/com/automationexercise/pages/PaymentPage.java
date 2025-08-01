@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class PaymentPage {
     private WebDriver driver;
 
-    // محددات العناصر
+
     private By nameOnCardInput = By.name("name_on_card");
     private By cardNumberInput = By.name("card_number");
     private By cvcInput = By.name("cvc");
@@ -15,7 +15,7 @@ public class PaymentPage {
     private By payAndConfirmButton = By.id("submit");
     private By successMessage = By.xpath("//p[contains(text(), 'Your order has been placed successfully!')]");
 
-    // محددات لزر تحميل الفاتورة وزر المتابعة
+
     private By downloadInvoiceButton = By.xpath("//a[contains(text(), 'Download Invoice')]");
     private By continueAfterPurchaseButton = By.xpath("//a[text()='Continue']");
 
@@ -40,24 +40,17 @@ public class PaymentPage {
         return driver.findElement(successMessage).getText();
     }
 
-    /**
-     * تتحقق من أن زر "Download Invoice" موجود وقابل للضغط.
-     * @return true إذا كان الزر موجودًا.
-     */
+
     public boolean isDownloadInvoiceButtonVisible() {
         return driver.findElement(downloadInvoiceButton).isDisplayed();
     }
 
-    /**
-     * تقوم بالضغط على زر "Download Invoice".
-     */
+
     public void clickDownloadInvoiceButton() {
         driver.findElement(downloadInvoiceButton).click();
     }
 
-    /**
-     * تقوم بالضغط على زر "Continue" بعد إتمام عملية الشراء.
-     */
+
     public void clickContinueAfterPurchase() {
         driver.findElement(continueAfterPurchaseButton).click();
     }
