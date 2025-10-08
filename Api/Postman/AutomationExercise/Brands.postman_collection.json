@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "8deb39cc-41c5-45e2-8b6b-889d0a698741",
+		"name": "Brands",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49023328",
+		"_collection_link": "https://heshamhenry2-367397.postman.co/workspace/AutomationExercise~21ebf12e-1973-4748-a9b5-e59d85b041aa/collection/49023328-8deb39cc-41c5-45e2-8b6b-889d0a698741?action=share&source=collection_link&creator=49023328"
+	},
+	"item": [
+		{
+			"name": "Get All Brands List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Brand has the correct structure (id, brand)\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    const firstBrand = responseData.brands[0]; \r",
+							"    \r",
+							"    pm.expect(firstBrand).to.have.property('id');\r",
+							"    pm.expect(firstBrand).to.have.property('brand');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Brands list is not empty\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.brands).to.be.an('array').and.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Data types are correct for brand properties\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    const firstBrand = responseData.brands[0];\r",
+							"    \r",
+							"    pm.expect(firstBrand.id).to.be.a('number');\r",
+							"    pm.expect(firstBrand.brand).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 405 for unsupported method\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is within acceptable limits (e.g., below 800ms)\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}brandsList",
+					"host": [
+						"{{baseurl}}brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT To All Brands List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405 for PUT method\", function ( ) {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"pm.test(\"Response body contains the correct error message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This request method is not supported.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body should not contain a brands list\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.text()).to.not.include('\"brands\":');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}brandsList",
+					"host": [
+						"{{baseurl}}brandsList"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
