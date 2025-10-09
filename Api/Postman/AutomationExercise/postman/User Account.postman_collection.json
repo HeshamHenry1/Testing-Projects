@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "c907ab06-d942-48d7-807f-0f5e10aa78fa",
+		"name": "User Account",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49023328",
+		"_collection_link": "https://heshamhenry2-367397.postman.co/workspace/AutomationExercise~21ebf12e-1973-4748-a9b5-e59d85b041aa/collection/49023328-c907ab06-d942-48d7-807f-0f5e10aa78fa?action=share&source=collection_link&creator=49023328"
+	},
+	"item": [
+		{
+			"name": "POST To Create/Register User Account",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 201 Created\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body indicates 'User created!'\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.responseCode).to.equal(201);\r",
+							"    pm.expect(responseData.message).to.equal(\"User created!\");\r",
+							"});\r",
+							"pm.test(\"Status is OK and message indicates email already exists\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.responseCode).to.equal(400);\r",
+							"    pm.expect(responseData.message).to.equal(\"Email Address already exist!\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test_9994@test.test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "title ",
+							"value": "Mr.",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "May",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "2001",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "test2",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "India",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "000",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "0111000111000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}createAccount",
+					"host": [
+						"{{baseurl}}createAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE METHOD To Delete User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// الاختبار الأول: التحقق من كود الحالة 200 OK\r",
+							"pm.test(\"Status code is 200 OK for successful deletion\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// الاختبار الثاني: التحقق من رسالة النجاح\r",
+							"pm.test(\"Response body indicates 'Account deleted!'\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.responseCode).to.equal(200);\r",
+							"    pm.expect(responseData.message).to.equal(\"Account deleted!\");\r",
+							"});\r",
+							"pm.test(\"Status is 404 for wrong password\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Message indicates user not found\", function () {\r",
+							"    const res = pm.response.json();\r",
+							"    pm.expect(res.responseCode).to.equal(404);\r",
+							"    pm.expect(res.message).to.equal(\"User not found!\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test_9992@test.test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}deleteAccount",
+					"host": [
+						"{{baseurl}}deleteAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT METHOD To Update User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK for successful update\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body indicates 'User updated!'\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.responseCode).to.equal(200);\r",
+							"    pm.expect(responseData.message).to.equal(\"User updated!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status is 404 for wrong password\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Message indicates user not found\", function () {\r",
+							"    const res = pm.response.json();\r",
+							"    pm.expect(res.responseCode).to.equal(404);\r",
+							"    pm.expect(res.message).to.equal(\"User not found!\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test_9991@test.test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "title ",
+							"value": "Mr.",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "May",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "2002",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "test3",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "000",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "0111000111100",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}updateAccount",
+					"host": [
+						"{{baseurl}}updateAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET user account detail by email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK for existing user\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains the correct user details\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    const user = responseData.user;\r",
+							"    \r",
+							"    pm.expect(user.email).to.equal(\"test_999@test.test\");\r",
+							"    \r",
+							"    pm.expect(user.name).to.equal(\"Test Details User\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"User object has the expected structure\", function() {\r",
+							"    const user = pm.response.json().user;\r",
+							"    pm.expect(user).to.have.property('id');\r",
+							"    pm.expect(user).to.have.property('name');\r",
+							"    pm.expect(user).to.have.property('email');\r",
+							"    pm.expect(user).to.not.have.property('password'); \r",
+							"});\r",
+							"pm.test(\"Status code is 200 OK for non-existent user\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body indicates user not found\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.responseCode).to.equal(404);\r",
+							"    pm.expect(responseData.message).to.equal(\"User not found!\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseurl}}getUserDetailByEmail?email=test_999@test.test",
+					"host": [
+						"{{baseurl}}getUserDetailByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test_999@test.test"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

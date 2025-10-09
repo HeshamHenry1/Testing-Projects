@@ -1,0 +1,170 @@
+{
+    "info": {
+        "_postman_id": "a03bbb6d-0efb-46a2-b054-1d11f4df5ec6",
+        "name": "AutomationExercise - Products",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get All Products List",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function ( ) {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "pm.test(\"Product has the correct structure (schema)\", function () {",
+                            "    const responseData = pm.response.json();",
+                            "    const firstProduct = responseData.products[0]; ",
+                            "    pm.expect(firstProduct).to.have.property('id');",
+                            "    pm.expect(firstProduct).to.have.property('name');",
+                            "    pm.expect(firstProduct).to.have.property('price');",
+                            "    pm.expect(firstProduct).to.have.property('brand');",
+                            "    pm.expect(firstProduct).to.have.property('category');",
+                            "    pm.expect(firstProduct.category).to.have.property('usertype');",
+                            "});",
+                            "pm.test(\"Products list is not empty\", function () {",
+                            "    const responseData = pm.response.json();",
+                            "    pm.expect(responseData.products).to.be.an('array').and.not.be.empty;",
+                            "});",
+                            "pm.test(\"Response time is less than 1000ms\", function () {",
+                            "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseurl}}/productsList",
+                    "host": [
+                        "{{baseurl}}"
+                    ],
+                    "path": [
+                        "productsList"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "POST To All Products List (Negative)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 405 for unsupported method\", function () {",
+                            "    pm.response.to.have.status(405);",
+                            "});",
+                            "pm.test(\"Response body contains the correct error message\", function () {",
+                            "    pm.expect(pm.response.text()).to.include(\"This request method is not supported.\");",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "{{baseurl}}/productsList",
+                    "host": [
+                        "{{baseurl}}"
+                    ],
+                    "path": [
+                        "productsList"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "POST To Search Product",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200 for a valid search\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "pm.test(\"Products list is returned and is not empty\", function () {",
+                            "    const responseData = pm.response.json();",
+                            "    pm.expect(responseData.products).to.be.an('array').and.not.be.empty;",
+                            "});",
+                            "pm.test(\"All returned product names include the search term 'tshirt'\", function () {",
+                            "    const responseData = pm.response.json();",
+                            "    responseData.products.forEach(function(product) {",
+                            "        pm.expect(product.name.toLowerCase()).to.include('tshirt');",
+                            "    });",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "search_product",
+                            "value": "tshirt",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{baseurl}}/searchProduct",
+                    "host": [
+                        "{{baseurl}}"
+                    ],
+                    "path": [
+                        "searchProduct"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "POST To Search Product without search_product parameter (Negative)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 400 for missing search_product parameter\", function () {",
+                            "    pm.response.to.have.status(400);",
+                            "});",
+                            "pm.test(\"Response body contains the correct error code and message\", function () {",
+                            "    const responseData = pm.response.json();",
+                            "    pm.expect(responseData.responseCode).to.equal(400);",
+                            "    pm.expect(responseData.message).to.equal(\"Bad request, search_product parameter is missing in POST request.\");",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "{{baseurl}}/searchProduct",
+                    "host": [
+                        "{{baseurl}}"
+                    ],
+                    "path": [
+                        "searchProduct"
+                    ]
+                }
+            }
+        }
+    ]
+}

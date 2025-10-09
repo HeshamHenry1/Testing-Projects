@@ -1,0 +1,963 @@
+{
+	"info": {
+		"_postman_id": "c757ac0f-24ba-4313-8c20-788f446b223c",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49023328",
+		"_collection_link": "https://www.postman.com/heshamhenry2-367397/dummyjson-complete-api-test-suite/collection/j3shy5u/products?action=share&source=collection_link&creator=49023328"
+	},
+	"item": [
+		{
+			"name": "All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits (e.g., under 800ms)\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header is present and is application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body is a valid JSON object with expected top-level keys\", function () {\r",
+							"    pm.expect(response).to.be.an('object');\r",
+							"    pm.expect(response).to.have.all.keys('products', 'total', 'skip', 'limit');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. 'products' key holds an array (  product is array )\", function () {\r",
+							"    pm.expect(response.products).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"6. Product count matches the 'limit' value (   number is under  'limit')\", function () {\r",
+							"    const productCount = response.products.length;\r",
+							"    console.log(\"Number of products returned:\", productCount); \r",
+							"    pm.expect(productCount).to.equal(response.limit, \"The number of products in the array should match the 'limit' field\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"7. Total product count ('total') is a number and is 100 or more\", function () {\r",
+							"    pm.expect(response.total).to.be.a('number');\r",
+							"    pm.expect(response.total).to.be.at.least(100); \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"8. The first product in the list has a valid and complete structure\", function () {\r",
+							"    if (response.products.length > 0) {\r",
+							"        const firstProduct = response.products[0];\r",
+							"        \r",
+							"        pm.expect(firstProduct).to.have.property('id').that.is.a('number');\r",
+							"        pm.expect(firstProduct).to.have.property('title').that.is.a('string').and.is.not.empty;\r",
+							"        pm.expect(firstProduct).to.have.property('price').that.is.a('number');\r",
+							"        pm.expect(firstProduct).to.have.property('rating').that.is.a('number');\r",
+							"        pm.expect(firstProduct).to.have.property('thumbnail').that.is.a('string').and.includes('https://' );\r",
+							"        pm.expect(firstProduct).to.have.property('images').that.is.an('array').and.is.not.empty;\r",
+							"    } else {\r",
+							"        pm.assert.fail(\"The products array is empty, cannot perform sample check.\");\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK (or 201 Created)\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201], \"Expected 200 or 201 status for resource creation\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits for a write operation (e.g., under 1.5s)\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const requestBody = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"pm.test(\"3. Response body is a valid JSON object\", function () {\r",
+							"    pm.expect(response).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The created product 'title' matches the title we sent\", function () {\r",
+							"    pm.expect(response.title).to.eql(requestBody.title);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The created product 'price' matches the price we sent\", function () {\r",
+							"    pm.expect(response.price).to.eql(requestBody.price);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"6. Response includes a numeric 'id' for the new product\", function () {\r",
+							"    pm.expect(response.id).to.be.a('number');\r",
+							"    pm.expect(response.id).to.be.above(100); \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"7. [Automation] Save the new product ID to an environment variable\", function () {\r",
+							"    if (response.id) {\r",
+							"        // pm.environment.set(\"productId\", response.id);\r",
+							"        // console.log(\"SUCCESS: New Product ID saved to environment variable 'productId': \" + response.id);\r",
+							"        \r",
+							"        pm.expect(pm.environment.get(\"productId\")).to.eql( String(response.id) );\r",
+							"\r",
+							"    } else {\r",
+							"        pm.assert.fail(\"Failed to save Product ID because it was not found in the response.\");\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"My Awesome Harry potter  - By Henry\",\r\n    \"price\": 199.99,\r\n    \"description\": \"This is a product created for API testing.\",\r\n    \"category\": \"Fantasy\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const requestBody = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"pm.test(\"3. The product ID in the response matches the ID we sent in the URL\", function () {\r",
+							"    const productIdFromEnv = pm.environment.get(\"productId\");\r",
+							"    pm.expect(response.id).to.eql(parseInt(productIdFromEnv), \"Product ID in response should match the one in the environment\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The product 'title' has been updated correctly\", function () {\r",
+							"    pm.expect(response.title).to.eql(requestBody.title);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The product 'price' has been updated correctly\", function () {\r",
+							"    pm.expect(response.price).to.eql(requestBody.price);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"6. Other product data (like 'description') was not accidentally changed\", function () {\r",
+							"  \r",
+							"    pm.expect(response).to.have.property('rating');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"My Updated Game of throns  - By Harry\",\r\n    \"price\": 249.99\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products/{{productId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"{{productId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"3. The ID of the 'deleted' product matches the ID we sent\", function () {\r",
+							"    const productIdFromEnv = pm.environment.get(\"productId\");\r",
+							"    pm.expect(response.id).to.eql(parseInt(productIdFromEnv), \"Deleted product ID should match the one sent in the request\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The response contains a flag 'isDeleted' set to true\", function () {\r",
+							"    pm.expect(response.isDeleted).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The response includes the 'deletedOn' timestamp\", function () {\r",
+							"    pm.expect(response).to.have.property('deletedOn');\r",
+							"    const deletedOnDate = new Date(response.deletedOn);\r",
+							"    pm.expect(isNaN(deletedOnDate.getTime())).to.be.false; \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/{{productId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"{{productId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search for existing term (\"phone\")",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"3. Search results are not empty\", function () {\r",
+							"    pm.expect(response.products).to.be.an('array').and.to.not.be.empty;\r",
+							"    pm.expect(response.total).to.be.a('number').and.is.above(0);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"4. Every product in the result contains the search term 'phone'\", function () {\r",
+							"    const searchTerm = \"phone\";\r",
+							"    let allProductsAreRelevant = true;\r",
+							"\r",
+							"    for (const product of response.products) {\r",
+							"        const productText = (product.title + \" \" + product.description).toLowerCase();\r",
+							"        \r",
+							"        if (!productText.includes(searchTerm.toLowerCase())) {\r",
+							"            console.error(`Irrelevant product found! ID: ${product.id}, Title: \"${product.title}\" does not contain \"${searchTerm}\"`);\r",
+							"            allProductsAreRelevant = false;\r",
+							"            break; \r",
+							"        }\r",
+							"    }\r",
+							"    \r",
+							"    pm.expect(allProductsAreRelevant, \"Not all products in the search result are relevant to the search term\").to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/search?q=phone",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "phone"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with a non-existent term",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"3. 'products' array is empty\", function () {\r",
+							"    pm.expect(response.products).to.be.an('array').and.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. 'total' field is 0\", function () {\r",
+							"    pm.expect(response.total).to.eql(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. 'limit' and 'skip' fields are present and are numbers\", function () {\r",
+							"    pm.expect(response.limit).to.be.a('number');\r",
+							"    pm.expect(response.skip).to.be.a('number');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/search?q=test",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Product Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header confirms JSON response\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body is a valid array\", function () {\r",
+							"    pm.expect(response).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The categories list is not empty\", function () {\r",
+							"    pm.expect(response.length).to.be.above(0, \"The categories array should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"6. Every item in the array is a non-empty string\", function () {\r",
+							"    let allItemsAreValidStrings = true;\r",
+							"    for (const category of response) {\r",
+							"        if (typeof category !== 'string' || category.length === 0) {\r",
+							"            allItemsAreValidStrings = false;\r",
+							"            console.error(`Invalid item found in categories: ${category}`);\r",
+							"            break;\r",
+							"        }\r",
+							"    }\r",
+							"    pm.expect(allItemsAreValidStrings, \"Not all items in the array are valid, non-empty strings\").to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"7. The list contains expected categories (e.g., 'smartphones', 'laptops')\", function () {\r",
+							"\r",
+							"    pm.expect(response).to.include.members(\r",
+							"        ['smartphones', 'laptops', 'fragrances'], \r",
+							"        \"The list should contain core expected categories\"\r",
+							"    );\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/categories",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products by Category (\"smartphones\")",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"3. The products list is not empty\", function () {\r",
+							"    pm.expect(response.products).to.be.an('array').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"4. Every product in the result belongs to the 'smartphones' category\", function () {\r",
+							"    \r",
+							"    const expectedCategory = \"smartphones\";\r",
+							"    let allProductsAreInCategory = true;\r",
+							"\r",
+							"    for (const product of response.products) {\r",
+							"        if (product.category !== expectedCategory) {\r",
+							"            console.error(`Wrong category product found! ID: ${product.id}, Title: \"${product.title}\" has category \"${product.category}\"`);\r",
+							"            allProductsAreInCategory = false;\r",
+							"            break; \r",
+							"        }\r",
+							"    }\r",
+							"    \r",
+							"    pm.expect(allProductsAreInCategory, \"Not all products in the result belong to the requested category\").to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The 'total' number of products is greater than 0\", function() {\r",
+							"    pm.expect(response.total).to.be.a('number').and.is.above(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/category/smartphones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"category",
+						"smartphones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products with Limit (10)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const expectedLimit = 10; \r",
+							"\r",
+							"pm.test(\"3. The 'products' array contains the exact number of items specified by 'limit'\", function () {\r",
+							"    pm.expect(response.products.length).to.eql(expectedLimit);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The 'limit' field in the response body matches the requested limit\", function () {\r",
+							"    pm.expect(response.limit).to.eql(expectedLimit);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The 'total' field reflects the total number of products available on the server\", function () {\r",
+							"    pm.expect(response.total).to.be.a('number');\r",
+							"    pm.expect(response.total).to.be.greaterThan(expectedLimit);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"6. The 'skip' field is present and is 0 for the first page\", function () {\r",
+							"    pm.expect(response.skip).to.eql(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products?limit=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products with Limit & Skip (Page 2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const expectedLimit = 10;\r",
+							"const expectedSkip = 10;\r",
+							"\r",
+							"pm.test(\"3. The 'products' array contains the correct number of items\", function () {\r",
+							"    pm.expect(response.products.length).to.eql(expectedLimit);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The 'limit' and 'skip' fields in the response match the request\", function () {\r",
+							"    pm.expect(response.limit).to.eql(expectedLimit);\r",
+							"    pm.expect(response.skip).to.eql(expectedSkip);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"5. The first product ID is correct for the second page\", function () {\r",
+							"  \r",
+							"    \r",
+							"    if (response.products.length > 0) {\r",
+							"        const firstProductId = response.products[0].id;\r",
+							"        const expectedFirstId = expectedSkip + 1; \r",
+							"\r",
+							"        console.log(`First product ID on this page is: ${firstProductId}`);\r",
+							"        console.log(`Expected first product ID is: ${expectedFirstId}`);\r",
+							"\r",
+							"        pm.expect(firstProductId).to.eql(expectedFirstId, \"The first product ID on page 2 should be 11\");\r",
+							"    } else {\r",
+							"        pm.assert.fail(\"Cannot verify first product ID because the products array is empty.\");\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products?limit =10&skip =10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "limit ",
+							"value": "10"
+						},
+						{
+							"key": "skip ",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Product with Non-Existent ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 404 Not Found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body contains a 'message' field\", function () {\r",
+							"    pm.expect(response).to.have.property('message');\r",
+							"    pm.expect(response.message).to.be.a('string').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The error message is clear and informative\", function () {\r",
+							"\r",
+							"    const requestedId = pm.request.url.path[pm.request.url.path.length - 1]; \r",
+							"    \r",
+							"    const expectedMessage = `Product with id '${requestedId}' not found`;\r",
+							"    console.log(`Expected error message: \"${expectedMessage}\"`);\r",
+							"    console.log(`Actual error message:   \"${response.message}\"`);\r",
+							"\r",
+							"    pm.expect(response.message).to.eql(expectedMessage, \"The error message should be informative and contain the requested ID\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/9999",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"9999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Product with Invalid ID (\"abc\")",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is a client error (400 or 404)\", function () {\r",
+							"   \r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 404], \"Expected a client error status code like 400 or 404\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body contains a 'message' field\", function () {\r",
+							"    pm.expect(response).to.have.property('message');\r",
+							"    pm.expect(response.message).to.be.a('string').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The error message is informative\", function () {\r",
+							"\r",
+							"    const requestedId = pm.request.url.path[pm.request.url.path.length - 1];\r",
+							"    const expectedMessage = `Product with id '${requestedId}' not found`;\r",
+							"\r",
+							"    console.log(`Expected error message: \"${expectedMessage}\"`);\r",
+							"    console.log(`Actual error message:   \"${response.message}\"`);\r",
+							"\r",
+							"    pm.expect(response.message).to.eql(expectedMessage, \"The error message should indicate that the product was not found\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/abc",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"abc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create Product with Missing Title (Negative)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 400 Bad Request\", function () {\r",
+							"  \r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body contains a 'message' field\", function () {\r",
+							"    pm.expect(response).to.have.property('message');\r",
+							"    pm.expect(response.message).to.be.a('string').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The error message is clear and indicates the missing field\", function () {\r",
+							" \r",
+							"    const expectedErrorMessageFragment = \"title\"; \r",
+							"    \r",
+							"    console.log(`Actual error message: \"${response.message}\"`);\r",
+							"\r",
+							"    pm.expect(response.message.toLowerCase()).to.include(\r",
+							"        expectedErrorMessageFragment, \r",
+							"        `The error message should mention the missing field: '${expectedErrorMessageFragment}'`\r",
+							"    );\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 99.99,\r\n    \"description\": \"A product without a title\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

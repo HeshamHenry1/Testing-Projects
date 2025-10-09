@@ -1,0 +1,37 @@
+{
+    "id": "408393dd-c534-4727-83c4-259ce43f23cd",
+    "name": "DummyJSON",
+    "values": [
+        {
+            "key": "baseUrl",
+            "value": "https://dummyjson.com",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "authToken",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "productId",
+            "value": "1",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "cartId",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "userId",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        }
+    ],
+    "_postman_variable_scope": "environment"
+}

@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "92662550-e2f5-4d45-85f5-44651a63617e",
+		"name": "Login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49023328",
+		"_collection_link": "https://heshamhenry2-367397.postman.co/workspace/AutomationExercise~21ebf12e-1973-4748-a9b5-e59d85b041aa/collection/49023328-92662550-e2f5-4d45-85f5-44651a63617e?action=share&source=collection_link&creator=49023328"
+	},
+	"item": [
+		{
+			"name": "POST To Verify Login with valid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200 for valid login\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body indicates successful login\", function () {\r",
+							"    const responseData = pm.response.json();  \r",
+							"    pm.expect(responseData.responseCode).to.equal(200);    \r",
+							"    pm.expect(responseData.message).to.equal(\"User exists!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Login response time is within acceptable limits (e.g., below 1500ms)\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test_84@test.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}verifyLogin",
+					"host": [
+						"{{baseurl}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To Verify Login without email parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400 when email parameter is missing\", function ( ) {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains the correct error message for missing email\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.responseCode).to.equal(400);\r",
+							"    pm.expect(responseData.message).to.equal(\"Bad request, email or password parameter is missing in POST request.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}verifyLogin",
+					"host": [
+						"{{baseurl}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE To Verify Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405 for unsupported DELETE method\", function ( ) {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains the correct error message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This request method is not supported.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains the correct error message for missing email\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.responseCode).to.equal(405);\r",
+							"    \r",
+							"    pm.expect(responseData.message).to.equal(\"This request method is not supported.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}verifyLogin",
+					"host": [
+						"{{baseurl}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To Verify Login with invalid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body contains the correct error message for missing email\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.responseCode).to.equal(404);\r",
+							"    pm.expect(responseData.message).to.equal(\"User not found!\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@test.test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}verifyLogin",
+					"host": [
+						"{{baseurl}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

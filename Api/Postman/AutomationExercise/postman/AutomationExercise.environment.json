@@ -1,0 +1,13 @@
+{
+    "id": "d194e05c-1e2d-464c-a4ef-7789a475a9e8",
+    "name": "AutomationExercise",
+    "values": [
+        {
+            "key": "baseurl",
+            "value": "https://automationexercise.com/api",
+            "type": "default",
+            "enabled": true
+        }
+    ],
+    "_postman_variable_scope": "environment"
+}

@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "4db329db-0d53-4e44-96bd-1b08df1a37f6",
+		"name": "Users & Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49023328",
+		"_collection_link": "https://www.postman.com/heshamhenry2-367397/dummyjson-complete-api-test-suite/collection/qi3sw90/users-auth?action=share&source=collection_link&creator=49023328"
+	},
+	"item": [
+		{
+			"name": "POST Login and Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200 OK\", () => pm.response.to.have.status(200));\r",
+							"const response = pm.response.json();\r",
+							"if (response.token) {\r",
+							"    pm.environment.set(\"authToken\", response.token);\r",
+							"    console.log(\"SUCCESS: Fresh Auth Token saved to environment variable 'authToken'\");\r",
+							"    pm.test(\"Token was saved successfully\", () => pm.expect(pm.environment.get(\"authToken\")).to.eql(response.token));\r",
+							"} else {\r",
+							"    pm.test(\"Token was not found in response\", () => pm.assert.fail(\"Token not found\"));\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create New User for Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Current Authenticated User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"3. Response body contains the expected user data structure\", function () {\r",
+							"    pm.expect(response).to.have.all.keys(\r",
+							"        'id', 'username', 'email', 'firstName', 'lastName', 'gender', 'image'\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The returned user ID is a valid number\", function () {\r",
+							"    pm.expect(response.id).to.be.a('number');\r",
+							"    pm.expect(response.id).to.eql(15, \"User ID should match the one in the token\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The returned username is correct\", function () {\r",
+							"    pm.expect(response.username).to.eql(\"kminchelle\", \"Username should match the one in the token\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/auth/me",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

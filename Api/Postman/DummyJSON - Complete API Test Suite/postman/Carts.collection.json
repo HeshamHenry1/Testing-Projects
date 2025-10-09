@@ -1,0 +1,457 @@
+{
+	"info": {
+		"_postman_id": "e54cc6bd-ac7f-4202-a585-a627a0b49fcd",
+		"name": "Carts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49023328",
+		"_collection_link": "https://www.postman.com/heshamhenry2-367397/dummyjson-complete-api-test-suite/collection/ikuj9jp/carts?action=share&source=collection_link&creator=49023328"
+	},
+	"item": [
+		{
+			"name": "GET Single Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"3. Response body is a valid object with expected cart keys\", function () {\r",
+							"    pm.expect(response).to.be.an('object');\r",
+							"    pm.expect(response).to.have.all.keys(\r",
+							"        'id', 'products', 'total', 'discountedTotal', 'userId', 'totalProducts', 'totalQuantity'\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The cart ID matches the requested ID\", function () {\r",
+							"    pm.expect(response.id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The 'products' list is an array and is not empty\", function () {\r",
+							"    pm.expect(response.products).to.be.an('array').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/carts/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"carts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Carts of a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const expectedUserId = 5; \r",
+							"\r",
+							"pm.test(\"3. Response contains a 'carts' array\", function () {\r",
+							"    pm.expect(response).to.be.an('object');\r",
+							"    pm.expect(response.carts).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The carts list is not empty\", function () {\r",
+							"    pm.expect(response.carts).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"5. Every cart in the list belongs to the correct user\", function () {\r",
+							"    \r",
+							"    let allCartsBelongToUser = true;\r",
+							"\r",
+							"    for (const cart of response.carts) {\r",
+							"        if (cart.userId !== expectedUserId) {\r",
+							"            console.error(`Wrong user's cart found! Cart ID: ${cart.id} belongs to user ${cart.userId}, but we expected user ${expectedUserId}`);\r",
+							"            allCartsBelongToUser = false;\r",
+							"            break; \r",
+							"        }\r",
+							"    }\r",
+							"    \r",
+							"    pm.expect(allCartsBelongToUser, \"Not all carts in the result belong to the requested user\").to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/carts/user/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"carts",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Add New Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 200 OK or 201 Created\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const requestBody = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"pm.test(\"3. The new cart is assigned to the correct user\", function () {\r",
+							"    pm.expect(response.userId).to.eql(requestBody.userId);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. The cart contains the correct number of product types\", function () {\r",
+							"    pm.expect(response.products.length).to.eql(requestBody.products.length);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"5. The total number of products is calculated correctly\", function () {\r",
+							"    pm.expect(response.totalProducts).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"6. The total quantity of all items is calculated correctly\", function () {\r",
+							"    const expectedQuantity = requestBody.products.reduce((sum, product) => sum + product.quantity, 0);\r",
+							"    pm.expect(response.totalQuantity).to.eql(expectedQuantity);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"7. [Automation] Save the new cart ID to an environment variable\", function () {\r",
+							"    if (response.id) {\r",
+							"        pm.environment.set(\"cartId\", response.id);\r",
+							"        console.log(\"SUCCESS: New Cart ID saved to environment variable 'cartId': \" + response.id);\r",
+							"        pm.expect(pm.environment.get(\"cartId\")).to.eql(String(response.id));\r",
+							"    } else {\r",
+							"        pm.assert.fail(\"Failed to save Cart ID because it was not found in the response.\");\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1,\r\n  \"products\": [\r\n    {\r\n      \"id\": 1,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"id\": 5,\r\n      \"quantity\": 2\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/carts/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"carts",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Add Cart with Invalid Quantity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is 400 Bad Request\", function () {\r",
+							"    pm.response.to.have.status(400, \"Expected a 400 Bad Request because the quantity is invalid\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body contains a 'message' field\", function () {\r",
+							"    pm.expect(response).to.have.property('message');\r",
+							"    pm.expect(response.message).to.be.a('string').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The error message is informative about the quantity issue\", function () {\r",
+							"    const message = response.message.toLowerCase();\r",
+							"    const containsRelevantKeyword = message.includes('quantity') || message.includes('invalid');\r",
+							"    \r",
+							"    console.log(`Actual error message: \"${response.message}\"`);\r",
+							"\r",
+							"    pm.expect(containsRelevantKeyword, \"Error message should be informative (e.g., mention 'quantity')\").to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1,\r\n  \"products\": [\r\n    {\r\n      \"id\": 1,\r\n      \"quantity\": 0\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/carts/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"carts",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Add Cart with Non-Existent Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is a client error (e.g., 400 or 404)\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 404], \"Expected a client error because the product does not exist\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body contains a 'message' field\", function () {\r",
+							"    pm.expect(response).to.have.property('message');\r",
+							"    pm.expect(response.message).to.be.a('string').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The error message is informative about the issue\", function () {\r",
+							"    const message = response.message.toLowerCase();\r",
+							"    const containsRelevantKeyword = message.includes('product') || message.includes('item') || message.includes('invalid');\r",
+							"    \r",
+							"    console.log(`Actual error message: \"${response.message}\"`);\r",
+							"\r",
+							"    pm.expect(containsRelevantKeyword, \"Error message should be informative (e.g., mention 'product' or 'item')\").to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1,\r\n  \"products\": [\r\n    {\r\n      \"id\": 9999,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/carts/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"carts",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Add Cart with Non-Existent User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"1. Status code is a client error (e.g., 400 or 404)\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 404], \"Expected a client error because the user does not exist\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Response time is within acceptable limits\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4. Response body contains a 'message' field\", function () {\r",
+							"    pm.expect(response).to.have.property('message');\r",
+							"    pm.expect(response.message).to.be.a('string').and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. The error message is informative about the issue\", function () {\r",
+							"    const message = response.message.toLowerCase();\r",
+							"    const containsRelevantKeyword = message.includes('user') || message.includes('invalid');\r",
+							"    \r",
+							"    console.log(`Actual error message: \"${response.message}\"`);\r",
+							"\r",
+							"    pm.expect(containsRelevantKeyword, \"Error message should be informative (e.g., mention 'user' or 'invalid data')\").to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 9999,\r\n  \"products\": [\r\n    {\r\n      \"id\": 1,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/carts/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"carts",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
