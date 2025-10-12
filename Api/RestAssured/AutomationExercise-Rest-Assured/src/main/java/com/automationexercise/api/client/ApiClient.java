@@ -47,7 +47,7 @@ public class ApiClient {
         Response response = RestAssured.given()
                 .spec(this.requestSpec)
                 .when()
-                .get("/brandsList"); // <-- تغيير الـ Endpoint هنا
+                .get("/brandsList");
 
         response.then().assertThat().statusCode(200);
         String jsonString = extractJsonFromHtml(response);
@@ -59,5 +59,25 @@ public class ApiClient {
                 .baseUri("https://automationexercise.com/api" )
                 .when()
                 .put("/brandsList");
+    }
+
+    public ProductsListResponse searchForProduct(String searchTerm) throws JsonProcessingException {
+        Response response = RestAssured.given()
+                .spec(this.requestSpec)
+
+                .formParam("search_product", searchTerm)
+                .when()
+                .post("/searchProduct");
+
+        response.then().assertThat().statusCode(200);
+        String jsonString = extractJsonFromHtml(response);
+        return objectMapper.readValue(jsonString, ProductsListResponse.class);
+    }
+
+    public Response searchProductRaw() {
+        return RestAssured.given()
+                .baseUri("https://automationexercise.com/api" )
+                .when()
+                .post("/searchProduct");
     }
 }

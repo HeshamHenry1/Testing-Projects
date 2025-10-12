@@ -14,7 +14,7 @@ public class BaseTest {
 
         baseRequestSpec = new RequestSpecBuilder()
                 .setBaseUri("https://automationexercise.com/api" )
-                .addHeader("User-Agent", "MyTestFramework/1.0")
+//                .addHeader("User-Agent", "MyTestFramework/1.0")
                 .build();
 
         System.out.println("Base RequestSpecification has been configured.");
