@@ -5,6 +5,7 @@ import com.automationexercise.api.pojos.ProductsListResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -12,7 +13,6 @@ public class ApiClient {
 
     private final RequestSpecification requestSpec;
     private final ObjectMapper objectMapper = new ObjectMapper();
-
 
     public ApiClient(RequestSpecification spec) {
         this.requestSpec = spec;
@@ -23,6 +23,9 @@ public class ApiClient {
         return htmlResponse.replaceAll("<[^>]*>", "");
     }
 
+    // =================================================================
+    //      جميع الدوال الآن لا تحتوي على User-Agent وتتوقع النجاح
+    // =================================================================
 
     public ProductsListResponse getAllProducts() throws JsonProcessingException {
         Response response = RestAssured.given()
@@ -33,14 +36,6 @@ public class ApiClient {
         response.then().assertThat().statusCode(200);
         String jsonString = extractJsonFromHtml(response);
         return objectMapper.readValue(jsonString, ProductsListResponse.class);
-    }
-
-
-    public Response postToProductsListWithoutDefaultSpec() {
-        return RestAssured.given()
-                .baseUri("https://automationexercise.com/api" )
-                .when()
-                .post("/productsList");
     }
 
     public BrandsListResponse getAllBrands() throws JsonProcessingException {
@@ -54,17 +49,9 @@ public class ApiClient {
         return objectMapper.readValue(jsonString, BrandsListResponse.class);
     }
 
-    public Response putToBrandsListWithoutDefaultSpec() {
-        return RestAssured.given()
-                .baseUri("https://automationexercise.com/api" )
-                .when()
-                .put("/brandsList");
-    }
-
     public ProductsListResponse searchForProduct(String searchTerm) throws JsonProcessingException {
         Response response = RestAssured.given()
                 .spec(this.requestSpec)
-
                 .formParam("search_product", searchTerm)
                 .when()
                 .post("/searchProduct");
@@ -74,10 +61,45 @@ public class ApiClient {
         return objectMapper.readValue(jsonString, ProductsListResponse.class);
     }
 
-    public Response searchProductRaw() {
+    public Response putToBrandsList() {
         return RestAssured.given()
-                .baseUri("https://automationexercise.com/api" )
+                .spec(this.requestSpec)
+                .when()
+                .put("/brandsList");
+    }
+
+    public Response searchProductWithoutParameter() {
+        return RestAssured.given()
+                .spec(this.requestSpec)
                 .when()
                 .post("/searchProduct");
+    }
+
+
+    public Response verifyLogin(String email, String password ) {
+        return RestAssured.given()
+                .spec(this.requestSpec)
+                .accept(ContentType.JSON)
+                .formParam("email", email)
+                .formParam("password", password)
+                .when()
+                .post("/verifyLogin");
+    }
+
+    public Response verifyLoginWithoutEmail(String password) {
+        return RestAssured.given()
+                .spec(this.requestSpec)
+                .accept(ContentType.JSON)
+                .formParam("password", password)
+                .when()
+                .post("/verifyLogin");
+    }
+
+    public Response deleteToVerifyLogin() {
+        return RestAssured.given()
+                .spec(this.requestSpec)
+                .accept(ContentType.JSON)
+                .when()
+                .delete("/verifyLogin");
     }
 }
