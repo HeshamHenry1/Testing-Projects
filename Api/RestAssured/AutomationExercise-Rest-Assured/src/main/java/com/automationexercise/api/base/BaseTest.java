@@ -1,21 +1,21 @@
 package com.automationexercise.api.base;
 
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
+
 
 public class BaseTest {
 
-    protected static RequestSpecification baseRequestSpec;
+    protected RequestSpecification baseRequestSpec;
 
-    @BeforeSuite(alwaysRun = true)
+
+    @BeforeClass(alwaysRun = true )
     public void setup() {
-        System.out.println("Initializing the base RequestSpecification...");
-
         baseRequestSpec = new RequestSpecBuilder()
                 .setBaseUri("https://automationexercise.com/api" )
+                .setContentType(ContentType.JSON) // Setting a default content type
                 .build();
-
-        System.out.println("Base RequestSpecification has been configured.");
     }
 }

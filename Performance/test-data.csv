@@ -1,0 +1,6 @@
+username,password,email,firstName,lastName,category,productID
+userC1,pass7891,user1C@test.com,Mona,Hassan,CATS,FL-DSH-01
+userA,pass123,userA@test.com,Ahmed,Ali,FISH,FI-SW-01
+userB,pass456,userB@test.com,Fatima,Said,DOGS,K9-BD-01
+
+

@@ -17,7 +17,7 @@ public class Product {
     private String brand;
 
     @JsonProperty("category")
-    private Category category; // سيستخدم الكلاس الداخلي Category
+    private Category category;
 
 
     public int getId() { return id; }

@@ -12,7 +12,6 @@ public class Brand {
     @JsonProperty("brand")
     private String brand;
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
